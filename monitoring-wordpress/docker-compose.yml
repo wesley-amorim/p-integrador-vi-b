@@ -1,5 +1,5 @@
-#versão atual
-version: '4.35.1'
+#versão funcional
+version: '3.9'
 
 #configurando o container
 services: #quais serviços o docker vai gerenciar
@@ -13,7 +13,7 @@ services: #quais serviços o docker vai gerenciar
       WORDPRESS_database_USER: wesleyuser #user e password são credenciais
       WORDPRESS_database_PASSWORD: wesleypass
       WORDPRESS_database_NAME: wesleydb #nome usado pelo wordpress
-    depends_on:
+    depend_on:
       - database
 
   database: #configura o container que configura o banco de dados
