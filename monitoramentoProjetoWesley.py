@@ -67,3 +67,25 @@ def testar_falha_autenticacao(url, username, password_incorreto):
         driver.quit()
     except Exception as e:
         print(f"Erro durante o teste de falha: {e}")
+
+
+
+#verificar funcionalidades (( Bloco Principal ))
+if __name__ == "__main__":
+    url = "http://localhost:8000/wp-login.php"
+    username = "WesleyAmorim" #professorSubstituir
+    password_correto = "Sokg#$AK329@#Rp@ot$SS)Bv" #professorSubstituir
+    password_incorreto = "qualquercoisa" #professorSubstituir
+
+    #Antes de realizar o teste de credenciais, verificar disponibilidade do site
+    print("Teste: Verificando disponibilidade do site...")
+    if verificar_disponibilidade_site(url):
+        #Login com credenciais corretas
+        print("Teste: Credenciais corretas")
+        monitorar_wordpress(url, username, password_correto)
+
+        #Login com credenciais incorretas
+        print("Teste: Falha de autenticação")
+        testar_falha_autenticacao(url, username, password_incorreto)
+    else:
+        print("Site indisponivel. Login não serão realizado.")
