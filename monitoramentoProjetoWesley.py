@@ -41,3 +41,29 @@ def monitorar_wordpress(url, username, password):
         driver.quit()
     except Exception as e:
         print(f"Erro durante o monitoramento: {e}")
+
+#Testar falhas de autenticação
+def testar_falha_autenticacao(url, username, password_incorreto):
+    try:
+        driver = webdriver.Chrome()
+        driver.get(url)
+
+        #credenciais incorretas
+        driver.find_element(By.ID, "user_login").send_keys(username)
+        driver.find_element(By.ID, "user_pass").send_keys(password_incorreto)
+        driver.find_element(By.ID, "wp-submit").click()
+
+        time.sleep(5)
+
+        try:
+            erro = driver.find_element(By.ID, "login_error").text
+            if "erro" in erro.lower():
+                print("Mensagem de erro exibida corretamente.")
+            else:
+                print("enhuma mensagem de erro detectada.")
+        except:
+            print("Nenhuma mensagem de erro exibida.")
+
+        driver.quit()
+    except Exception as e:
+        print(f"Erro durante o teste de falha: {e}")
