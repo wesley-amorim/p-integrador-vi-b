@@ -16,3 +16,28 @@ def verificar_disponibilidade_site(url):
     except requests.exceptions.RequestException as e:
         print(f"O site está indisponível. Erro: {e}")
         return False
+    
+#Função que monitora as credenciais
+def monitorar_wordpress(url, username, password):
+    try:
+        driver = webdriver.Chrome()
+        driver.get(url)
+
+        assert "WordPress" in driver.title, "Site Incorreto!"
+
+        #Credenciais
+        driver.find_element(By.ID, "user_login").send_keys(username)
+        driver.find_element(By.ID, "user_pass").send_keys(password)
+        driver.find_element(By.ID, "wp-submit").click()
+
+        time.sleep(5)
+
+        #Verificar se tudo deu certo com login
+        if "Painel" in driver.title or "Dashboard" in driver.page_source:
+            print("Login realizado com sucesso!")
+        else:
+            print("Falha ao acessar o site com as credenciais fornecidas.")
+
+        driver.quit()
+    except Exception as e:
+        print(f"Erro durante o monitoramento: {e}")
