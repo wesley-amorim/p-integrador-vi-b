@@ -1,0 +1,31 @@
+#versão atual
+version: '4.35.1'
+
+#configurando o container
+services: #quais serviços o docker vai gerenciar
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress_application
+    ports: #mapeia a porta 8000 host para a porta 80 no container
+      - "8000:80"
+    environment: #define variáveis de ambiente transferidas ao container
+      WORDPRESS_database_HOST: database  #define o host do banco de dados
+      WORDPRESS_database_USER: wesleyuser #user e password são credenciais
+      WORDPRESS_database_PASSWORD: wesleypass
+      WORDPRESS_database_NAME: wesleydb #nome usado pelo wordpress
+    depends_on:
+      - database
+
+  database: #configura o container que configura o banco de dados
+    image: mysql:5.7
+    container_name: wordpress_database
+    environment:
+      MYSQL_DATABASE: wesleydb
+      MYSQL_USER: wesleyuser
+      MYSQL_PASSWORD: wesleypass
+      MYSQL_ROOT_PASSWORD: rootpass
+    volumes:
+      - database_data:/var/lib/mysql
+
+volumes:
+  database_data:
