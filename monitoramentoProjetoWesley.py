@@ -88,4 +88,4 @@ if __name__ == "__main__":
         print("Teste: Falha de autenticação")
         testar_falha_autenticacao(url, username, password_incorreto)
     else:
-        print("Site indisponivel. Login não serão realizado.")
+        print("Site indisponivel. Login não será realizado.")
