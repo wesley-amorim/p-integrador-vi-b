@@ -41,9 +41,9 @@ A aplicação monitora um ambiente wordpress implementado com o docker localment
   - Chromedriver: Simular a interação do usuário.
   
   ### Etapas do projeto:
-  Configuração do ambiente Docker com WordPress.
-  Script desenvolvido em Python com objetivo de monitorar credenciais assim como a disponibilidade do site.
-  Testes de credenciais inválidas e site indisponível.
+  - Configuração do ambiente Docker com WordPress.
+  - Script desenvolvido em Python com objetivo de monitorar credenciais assim como a disponibilidade do site.
+  - Testes de credenciais inválidas e site indisponível.
 
 # Desenvolvimento
   Um arquivo docker-compose.yml foi criado para configurar o ambiente WordPress. "O conteúdo do arquivo está presente no repositório clonado"
